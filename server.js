@@ -12,7 +12,7 @@ const db = require("./models/index");
 // Redis Setup
 const redis = require("redis");
 const session = require("express-session");
-const redisClient = redis.createClient();
+const redisClient = redis.createClient(process.env.REDIS_URL);
 const redisStore = require("connect-redis")(session);
 
 // production redis url
@@ -27,7 +27,7 @@ if (process.env.ENVIRONMENT === "development") {
 server.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000"
+    origin: "https://client-40jwsl6zl.now.sh"
   })
 );
 
@@ -39,8 +39,8 @@ server.use(
     saveUninitialized: false,
     cookie: { secure: false },
     store: new redisStore({
-      host: "127.0.0.1",
-      port: 6379,
+      // host: "127.0.0.1",
+      // port: 6379,
       client: redisClient,
       ttl: 86400
     })
