@@ -15,15 +15,6 @@ const session = require("express-session");
 const redisClient = redis.createClient(process.env.REDIS_URL);
 const redisStore = require("connect-redis")(session);
 
-// production redis url
-let redis_url;
-
-if (process.env.ENVIRONMENT === "development") {
-  redis_url = "redis://127.0.0.1";
-} else {
-  redis_url = process.env.REDIS_URL;
-}
-
 server.use(
   cors({
     credentials: true,
@@ -39,8 +30,11 @@ server.use(
     saveUninitialized: false,
     cookie: { secure: true },
     store: new redisStore({
-      // host: "127.0.0.1",
-      // port: 6379,
+      host: "ec2-100-24-189-176.compute-1.amazonaws.com",
+      user: "h",
+      port: 22119,
+      password:
+        "pf49bdb9339f5cbf4a5ba56801d52cdf456538846c9397c16f0126c00b11625dc",
       client: redisClient,
       ttl: 86400
     })
