@@ -27,7 +27,7 @@ if (process.env.ENVIRONMENT === "development") {
 server.use(
   cors({
     credentials: true,
-    origin: "https://client-40jwsl6zl.now.sh"
+    origin: "client-40jwsl6zl.now.sh"
   })
 );
 
@@ -37,7 +37,7 @@ server.use(
     name: "dealer_crm",
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false },
+    cookie: { secure: true },
     store: new redisStore({
       // host: "127.0.0.1",
       // port: 6379,
