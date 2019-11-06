@@ -27,7 +27,7 @@ if (process.env.ENVIRONMENT === "development") {
 server.use(
   cors({
     credentials: true,
-    origin: "client.nicholaspatterson36.now.sh"
+    origin: "https://client.nicholaspatterson36.now.sh"
   })
 );
 
